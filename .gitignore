@@ -1,4 +1,8 @@
 pusher.sh 
+requirements.txt
 pwntools test.py
 hill cipher.py
 venv
+__pycache__
+.env
+ideas.txt
