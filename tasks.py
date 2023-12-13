@@ -45,7 +45,7 @@ def remove_html_tags(text):
 # this function defines a word using wordnik api
 def defineWord(word:str):
     
-    #wordnik only accesses word as lowercase
+    #wordnik only accesses words as lowercase
     word=word.lower()
 
     # Access your wordnik API key
@@ -70,6 +70,50 @@ def defineWord(word:str):
         return response.json()['message']
 
 
+
+
+# this function finds the gcd of a number through recursion
+def gcd(a, b):
+    if(b == 0):
+        return a
+    else:
+        return gcd(b,a%b)
+
+#this function expresses a number as its prime factors
+def factorize(num):
+    factors = []
+
+    # Find factors of 2
+    while num % 2 == 0:
+        factors.append(2)
+        num = num // 2
+
+    # Find factors of odd numbers starting from 3
+    for i in range(3, int(num**0.5) + 1, 2):
+        while num % i == 0:
+            factors.append(i)
+            num = num // i
+
+    # If the remaining num is greater than 2, add it (it's a prime number)
+    if num > 2:
+        factors.append(num)
+
+    return factors
+
+
+#this function finds the euler totient of an odd number
+def find_euler_totient(num:int)->int:
+    totient=1
+    factors=factorize(num)
+    for f in factors:
+        if f%2==0:
+            continue
+        factors_minused=[(f-1) for f in factors] 
+    
+    for f in factors_minused:
+        totient*=f
+
+    return totient
 
 
 
