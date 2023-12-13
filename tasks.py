@@ -70,7 +70,12 @@ def defineWord(word:str):
         return response.json()['message']
 
 
+def RSA_demo (p:int,q:int):
+    # compute n
+    n=p*q
 
+    # compute eulers totient function of n
+    pass
 
 # this function finds the gcd of a number through recursion
 def gcd(a, b):
