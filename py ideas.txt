@@ -1,0 +1,67 @@
+hash out my api key
+acessing environment vars like api keys in jupyter?
+
+
+# def square_and_multiply(num,power,mod):
+#     bin_pow=bin(5)[2:]
+#     index=1
+    
+#     for i in range(len(bin_pow)):
+# #         print(bin_pow[-index])
+#         current=bin_pow[-index]
+#         if current like 1:
+#             soln=pow(current,2,(num%mod))
+#         else:
+#             soln=pow(num,2,mod)
+#         index+=1
+    
+# square_and_multiply(5,2,4)    
+
+import math
+
+def euclidean_distance(point1, point2):
+    """
+    Calculate the Euclidean distance between two points.
+
+    Parameters:
+    - point1, point2: Tuple or list representing the (x, y) coordinates of the points.
+
+    Returns:
+    - float: Euclidean distance between the two points.
+    """
+    return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2)
+
+# Example usage:
+point_a = (2, 4)
+point_b = (8,2)
+
+distance = euclidean_distance(point_a, point_b)
+print(f"The Euclidean distance between {point_a} and {point_b} is: {distance}")
+
+
+try:
+    assert(distance==40**.5)
+    
+except AssertionError:
+    print('untrue')
+
+point_a = (1, 5)
+point_b = (8,2)
+distance1 = euclidean_distance(point_a, point_b) #b d
+point_a = (1, 5)
+point_b = (8.5,1)
+distance2 = euclidean_distance(point_a, point_b) #d e 
+
+min(distance1,distance2)
+
+
+def find_modular_inverse(a, m):
+    for d in range(m):
+        if (a * d) % m == 1:
+            return d
+    return None
+
+# Find d such that 5d ≡ 1 (mod 6)
+d = find_modular_inverse(5, 6)
+
+print(f"The value of d is: {d}")

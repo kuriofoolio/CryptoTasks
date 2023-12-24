@@ -1,0 +1,68 @@
+import math
+
+def euclidean_distance(point1, point2):
+    """
+    Calculate the Euclidean distance between two points.
+
+    Parameters:
+    - point1, point2: Tuple or list representing the (x, y) coordinates of the points.
+
+    Returns:
+    - float: Euclidean distance between the two points.
+    """
+    return math.sqrt((point2[0] - point1[0])**2 + (point2[1] - point1[1])**2)
+
+# Example usage in k means:
+# point_a = (2, 4)
+# point_b = (8,2)
+# point_d =(1,5)
+
+# point_c = (9, 3)
+# point_e = (8.5,1)
+
+# point_a = (1, 1)
+# point_b = (2,1)
+# point_d =(5,4)
+
+# point_c = (4, 3)
+
+
+# clus1=[point_a,point_b]
+# clus2=[point_c,point_d]
+
+
+# cent1= sum( i[0] for i in clus1) /len(clus1) , sum( i[1] for i in clus1) /len(clus1) 
+# cent2= sum( i[0] for i in clus2) /len(clus2) , sum( i[1] for i in clus2) /len(clus2) 
+
+# print(cent1, cent2)
+
+
+# point1=point_b
+# point2=point_e
+# print(f"The Euclidean distance between {point1} and {point2} is: {euclidean_distance(point1, point2)}")
+# print(f"The Euclidean distance between {point1} and {cent2} is: {euclidean_distance(point, cent2)}")
+
+
+point_a = (3, 2)
+point_b = (4,1)
+point_c = (2, 5)
+point_d =(5,2)
+point_e = (1,6)
+point_f = (4,2)
+distance1 = euclidean_distance(point_b, point_a) #b d
+distance2 = euclidean_distance(point_f, point_a) #b d
+distance3 = euclidean_distance(point_b, point_f) #b d
+# distance4 = euclidean_distance(point_f, point_f) #b d
+
+point_to_add=point_e
+clus1=[point_a,point_b, point_d, point_f]
+
+
+print(min( 
+euclidean_distance(i , point_to_add) for i in clus1
+))
+
+# print (34**.5)
+
+
+# draw dendogram in python
