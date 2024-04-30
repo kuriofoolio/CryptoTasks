@@ -4,7 +4,7 @@ import re,requests, os, hashlib
 from dotenv import load_dotenv 
 
 # Load any environment variables from .env
-load_dotenv()
+load_dotenv('../../secrets')
  
 
 # this code checks whether public key exchange was successful using diffie hellman algorithm
@@ -43,7 +43,7 @@ def remove_html_tags(text):
     return re.sub(clean, '', text)
 
 # this function defines a word using wordnik api
-def defineWord(word:str):
+def define_word(word:str):
     
     #wordnik only accesses words as lowercase
     word=word.lower()
@@ -51,7 +51,7 @@ def defineWord(word:str):
     # Access your wordnik API key
     wordnik_api_key = os.getenv("WORDNIK_API_KEY")
 
-    hashed_api_key = hashlib.sha1(wordnik_api_key.encode()).hexdigest()
+    # hashed_api_key = hashlib.sha1(wordnik_api_key.encode()).hexdigest()
 
     url=f'https://api.wordnik.com/v4/word.json/{word}/definitions'
     params={
@@ -61,7 +61,7 @@ def defineWord(word:str):
         'sourceDictionaries':'wiktionary',
         'useCanonical':'false',
         'includeTags':'false',
-        'api_key':f'{hashed_api_key}'
+        'api_key':f'{wordnik_api_key}'
     }
     response=requests.get(url,params=params)
     try:
@@ -121,4 +121,22 @@ def find_euler_totient(num:int)->int:
     return totient
 
 
+#linear congruential method  to generate pseudo random numbers
+a,c,m,x0=3, 3,5,3
+random_numbers_required=10
+#random variate values 
+random_variates=[]
+print(f'random variates\nx0:{x0}\n')
+for i in range(random_numbers_required):
+    x_value= ((a*x0)+ c )% m
+    x0=x_value
+    random_variates.append(x_value)
+    print(f'x{i+1}:{x_value}\n')
 
+
+#random numbers 
+# ! we dont generate random numbers from the seed 
+
+random_numbers = [(xI/m) for xI in random_variates ]
+
+print(f'random numbers\n{random_numbers}')
