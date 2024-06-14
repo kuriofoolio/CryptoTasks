@@ -5,4 +5,7 @@ __pycache__
 .env
 /test
 
-graphix_exam_test
+
+/script_profiler.py
+/code_profiler.py
+/py ideas.txt

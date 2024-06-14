@@ -1,12 +1,3 @@
-
-import re,requests, os, hashlib
-
-from dotenv import load_dotenv 
-
-# Load any environment variables from .env
-load_dotenv('../../secrets')
- 
-
 # this code checks whether public key exchange was successful using diffie hellman algorithm
 def diffie_hellman(g:int,n:int,a :int, b:int )->None:
     # diffie hellman key exchange depends on the formula of primitive roots:
@@ -35,39 +26,6 @@ def diffie_hellman(g:int,n:int,a :int, b:int )->None:
         print('key exchange successful')
     except AssertionError:
         print('key exchange unsuccessful')
-
-# this function removes html tags from a string 
-def remove_html_tags(text):
-    """Remove html tags from a string"""
-    clean = re.compile('<.*?>')
-    return re.sub(clean, '', text)
-
-# this function defines a word using wordnik api
-def define_word(word:str):
-    
-    #wordnik only accesses words as lowercase
-    word=word.lower()
-
-    # Access your wordnik API key
-    wordnik_api_key = os.getenv("WORDNIK_API_KEY")
-
-    # hashed_api_key = hashlib.sha1(wordnik_api_key.encode()).hexdigest()
-
-    url=f'https://api.wordnik.com/v4/word.json/{word}/definitions'
-    params={
-        'limit':200,
-        'partOfSpeech':'noun',
-        'includeRelated':'false',
-        'sourceDictionaries':'wiktionary',
-        'useCanonical':'false',
-        'includeTags':'false',
-        'api_key':f'{wordnik_api_key}'
-    }
-    response=requests.get(url,params=params)
-    try:
-        return remove_html_tags(response.json()[0]['text'])
-    except KeyError:
-        return response.json()['message']
 
 
 def RSA_demo (p:int,q:int):
@@ -119,24 +77,3 @@ def find_euler_totient(num:int)->int:
         totient*=f
 
     return totient
-
-
-#linear congruential method  to generate pseudo random numbers
-a,c,m,x0=3, 3,5,3
-random_numbers_required=10
-#random variate values 
-random_variates=[]
-print(f'random variates\nx0:{x0}\n')
-for i in range(random_numbers_required):
-    x_value= ((a*x0)+ c )% m
-    x0=x_value
-    random_variates.append(x_value)
-    print(f'x{i+1}:{x_value}\n')
-
-
-#random numbers 
-# ! we dont generate random numbers from the seed 
-
-random_numbers = [(xI/m) for xI in random_variates ]
-
-print(f'random numbers\n{random_numbers}')
